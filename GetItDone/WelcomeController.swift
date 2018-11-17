@@ -20,12 +20,32 @@ class WelcomeController: UIViewController {
     
     let titleLabel = GDLabel(title: "GET IT DONE", size: 24, textAlignment: .center)
     let infoLabel = GDLabel(title: "WELCOME.GET IT DONE IS A TO DO LIST.\nA REALLLY DOPE TO-DO-LIST.", size: 14, textAlignment: .center)
-    let copyright = GDLabel(title: "© 2018 | andy.li", color: .greyOne, size: 14, textAlignment: .center)
     
     let nextButton: UIButton = GDButton(title: "START WINNING")
     
+    let copyright = GDLabel(title: "© 2018 | andy.li", color: .greyOne, size: 14, textAlignment: .center)
+    
+    @objc func handleNext() {
+        // print("trying to handle next")
+        
+        // restore the scale
+        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            self.nextButton.transform = CGAffineTransform(scaleX: 0.92, y: 0.92) // make it smaller by 20%
+        }) { (_) in
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+                self.nextButton.transform = CGAffineTransform(scaleX: 1, y: 1) // make it restore
+            }) { (_) in
+                self.present(ListController(), animated: true, completion: nil)
+            }
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // register button for event
+        nextButton.addTarget(self, action: #selector(self.handleNext), for: [.touchUpInside, .touchUpOutside])
         
         view.backgroundColor = .white
 //        titleLable.text = "GET IT DONE"
@@ -65,5 +85,6 @@ class WelcomeController: UIViewController {
         copyright.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         copyright.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
     }
+
 }
 

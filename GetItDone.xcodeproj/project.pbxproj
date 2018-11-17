@@ -17,6 +17,7 @@
 		01C68533219F97AA00D6A808 /* GDLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C68532219F97AA00D6A808 /* GDLabel.swift */; };
 		01C68536219F9F0200D6A808 /* Raleway-v4020-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 01C68535219F9F0100D6A808 /* Raleway-v4020-Regular.otf */; };
 		01C68538219FC8AA00D6A808 /* GDButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C68537219FC8AA00D6A808 /* GDButton.swift */; };
+		01C6853A219FD4C300D6A808 /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C68539219FD4C300D6A808 /* ListController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		01C68532219F97AA00D6A808 /* GDLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDLabel.swift; sourceTree = "<group>"; };
 		01C68535219F9F0100D6A808 /* Raleway-v4020-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-v4020-Regular.otf"; sourceTree = "<group>"; };
 		01C68537219FC8AA00D6A808 /* GDButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDButton.swift; sourceTree = "<group>"; };
+		01C68539219FD4C300D6A808 /* ListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				01C68523219E813C00D6A808 /* LaunchScreen.storyboard */,
 				01C68526219E813C00D6A808 /* Info.plist */,
 				01C6851E219E813A00D6A808 /* GetItDone.xcdatamodeld */,
+				01C68539219FD4C300D6A808 /* ListController.swift */,
 			);
 			path = GetItDone;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				01C68533219F97AA00D6A808 /* GDLabel.swift in Sources */,
 				01C68530219F3E7E00D6A808 /* extension.swift in Sources */,
 				01C68518219E813A00D6A808 /* AppDelegate.swift in Sources */,
+				01C6853A219FD4C300D6A808 /* ListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
