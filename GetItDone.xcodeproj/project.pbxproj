@@ -16,6 +16,7 @@
 		01C68530219F3E7E00D6A808 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C6852F219F3E7E00D6A808 /* extension.swift */; };
 		01C68533219F97AA00D6A808 /* GDLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C68532219F97AA00D6A808 /* GDLabel.swift */; };
 		01C68536219F9F0200D6A808 /* Raleway-v4020-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 01C68535219F9F0100D6A808 /* Raleway-v4020-Regular.otf */; };
+		01C68538219FC8AA00D6A808 /* GDButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C68537219FC8AA00D6A808 /* GDButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		01C6852F219F3E7E00D6A808 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		01C68532219F97AA00D6A808 /* GDLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDLabel.swift; sourceTree = "<group>"; };
 		01C68535219F9F0100D6A808 /* Raleway-v4020-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-v4020-Regular.otf"; sourceTree = "<group>"; };
+		01C68537219FC8AA00D6A808 /* GDButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				01C6852C219F399C00D6A808 /* GDGradient.swift */,
 				01C68532219F97AA00D6A808 /* GDLabel.swift */,
+				01C68537219FC8AA00D6A808 /* GDButton.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01C6852D219F399C00D6A808 /* GDGradient.swift in Sources */,
+				01C68538219FC8AA00D6A808 /* GDButton.swift in Sources */,
 				01C6851A219E813A00D6A808 /* WelcomeController.swift in Sources */,
 				01C68520219E813A00D6A808 /* GetItDone.xcdatamodeld in Sources */,
 				01C68533219F97AA00D6A808 /* GDLabel.swift in Sources */,

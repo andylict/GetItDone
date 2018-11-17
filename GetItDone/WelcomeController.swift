@@ -12,17 +12,17 @@ class WelcomeController: UIViewController {
 
     let bg: UIView = {
         let view = GDGradient()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.backgroundColor = .cyan
-        view.layer.cornerRadius = 6
+        //        view.translatesAutoresizingMaskIntoConstraints = false
+        //        view.backgroundColor = .cyan
+        view.layer.cornerRadius = 24
         return view
     }()
     
     let titleLabel = GDLabel(title: "GET IT DONE", size: 24, textAlignment: .center)
     let infoLabel = GDLabel(title: "WELCOME.GET IT DONE IS A TO DO LIST.\nA REALLLY DOPE TO-DO-LIST.", size: 14, textAlignment: .center)
-    let copyright = GDLabel(title: "© 2018 | andy.li", color: .greyZero, size: 14, textAlignment: .center)
+    let copyright = GDLabel(title: "© 2018 | andy.li", color: .greyOne, size: 14, textAlignment: .center)
     
-    let nextButton = UIButton()
+    let nextButton: UIButton = GDButton(title: "START WINNING")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,12 @@ class WelcomeController: UIViewController {
         infoLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
         infoLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
+        // build customize button
         bg.addSubview(nextButton)
+        nextButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        nextButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        nextButton.centerXAnchor.constraint(equalTo: bg.centerXAnchor).isActive = true
+        nextButton.bottomAnchor.constraint(equalTo: bg.bottomAnchor, constant: -60).isActive = true
         
         // copyright放在最下边 不在中间的界面上 不是bg.addSubview
         view.addSubview(copyright)
