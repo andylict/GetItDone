@@ -28,17 +28,16 @@ class WelcomeController: UIViewController {
     @objc func handleNext() {
         // print("trying to handle next")
         
-        // restore the scale
+        // shrink then restore the scale
         UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
-            self.nextButton.transform = CGAffineTransform(scaleX: 0.92, y: 0.92) // make it smaller by 20%
+            self.nextButton.transform = CGAffineTransform(scaleX: 0.92, y: 0.92) // make it smaller by 92%
         }) { (_) in
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
-                self.nextButton.transform = CGAffineTransform(scaleX: 1, y: 1) // make it restore
+                self.nextButton.transform = CGAffineTransform(scaleX: 1, y: 1) // restore to original size
             }) { (_) in
                 self.present(ListController(), animated: true, completion: nil)
             }
         }
-        
     }
     
     override func viewDidLoad() {
@@ -50,7 +49,6 @@ class WelcomeController: UIViewController {
         view.backgroundColor = .white
 //        titleLable.text = "GET IT DONE"
 //        titleLable.translatesAutoresizingMaskIntoConstraints = false
-        
         
         view.addSubview(bg)
         bg.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true

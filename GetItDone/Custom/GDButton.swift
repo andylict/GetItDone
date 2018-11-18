@@ -11,23 +11,45 @@ import UIKit
 class GDButton: UIButton {
     
     var title: String!
+    var type: ButtonOptions!
     
-    init(title: String = "button text", frame: CGRect = .zero) {
+    init(title: String = "button text", frame: CGRect = .zero, type: ButtonOptions = .roundedText) {
         super.init(frame: .zero)
         if frame == .zero {
             self.translatesAutoresizingMaskIntoConstraints = false
         }
+        
         self.title = title
+        self.type = type
         self.phaseTwo()
     }
     
     func phaseTwo() {
         self.setTitle(self.title, for: .normal)
         self.setTitleColor(.greyZero, for: .normal)
-        self.layer.cornerRadius = 20
+        
         self.backgroundColor = .white
         if let titleLabel = self.titleLabel {
             titleLabel.font = UIFont.init(name: "Raleway-v4020-Regular", size: 16)
+        }
+        switch type {
+            case .roundedText:
+                self.roundedText()
+            case .squareIcon:
+                self.squareIcon()
+            default:
+                break
+            }
+    }
+    
+    func roundedText() {
+        self.layer.cornerRadius = 20
+    }
+    
+    func squareIcon() {
+        // this is where we will set custom icons
+        if let titleLabel = self.titleLabel {
+            titleLabel.font = UIFont.init(name: "Raleway-v4020-Regular", size: 24)
         }
     }
     
