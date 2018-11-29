@@ -57,7 +57,7 @@ class GDHeaderView: UIView {
     @objc func handleAddButton() {
         // perform add item
         if let delegate = self.delegate { // because delegate is ?, may not exist
-            delegate.addItem() // call method in ListController
+            delegate.openAddItemPopup() // call method in ListController
         }
     }
     

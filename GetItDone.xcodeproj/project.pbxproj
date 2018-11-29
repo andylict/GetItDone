@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0180C44921AF3064000A0A84 /* GDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180C44821AF3064000A0A84 /* GDTextField.swift */; };
 		01C68518219E813A00D6A808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C68517219E813A00D6A808 /* AppDelegate.swift */; };
 		01C6851A219E813A00D6A808 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C68519219E813A00D6A808 /* WelcomeController.swift */; };
 		01C68520219E813A00D6A808 /* GetItDone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01C6851E219E813A00D6A808 /* GetItDone.xcdatamodeld */; };
@@ -21,9 +22,11 @@
 		01C6853C21A063F200D6A808 /* GDHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C6853B21A063F200D6A808 /* GDHeaderView.swift */; };
 		01C6853F21A1022D00D6A808 /* OptionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C6853E21A1022D00D6A808 /* OptionSet.swift */; };
 		01C6854121A10FA300D6A808 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C6854021A10FA300D6A808 /* Protocol.swift */; };
+		01C6854321A12C6C00D6A808 /* GDNewItemPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C6854221A12C6C00D6A808 /* GDNewItemPopup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0180C44821AF3064000A0A84 /* GDTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDTextField.swift; sourceTree = "<group>"; };
 		01C68514219E813A00D6A808 /* GetItDone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetItDone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01C68517219E813A00D6A808 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01C68519219E813A00D6A808 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		01C6853B21A063F200D6A808 /* GDHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDHeaderView.swift; sourceTree = "<group>"; };
 		01C6853E21A1022D00D6A808 /* OptionSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSet.swift; sourceTree = "<group>"; };
 		01C6854021A10FA300D6A808 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		01C6854221A12C6C00D6A808 /* GDNewItemPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDNewItemPopup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				01C68534219F9C7A00D6A808 /* Fonts */,
-				01C68531219F976B00D6A808 /* Custom */,
 				01C6852E219F3E5B00D6A808 /* Extensions */,
+				01C68531219F976B00D6A808 /* Custom */,
 				01C68517219E813A00D6A808 /* AppDelegate.swift */,
 				01C6853D21A0664700D6A808 /* Controllers */,
 				01C68521219E813C00D6A808 /* Assets.xcassets */,
@@ -102,6 +106,8 @@
 				01C68532219F97AA00D6A808 /* GDLabel.swift */,
 				01C68537219FC8AA00D6A808 /* GDButton.swift */,
 				01C6853B21A063F200D6A808 /* GDHeaderView.swift */,
+				01C6854221A12C6C00D6A808 /* GDNewItemPopup.swift */,
+				0180C44821AF3064000A0A84 /* GDTextField.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -200,6 +206,8 @@
 				01C6853F21A1022D00D6A808 /* OptionSet.swift in Sources */,
 				01C68520219E813A00D6A808 /* GetItDone.xcdatamodeld in Sources */,
 				01C68533219F97AA00D6A808 /* GDLabel.swift in Sources */,
+				0180C44921AF3064000A0A84 /* GDTextField.swift in Sources */,
+				01C6854321A12C6C00D6A808 /* GDNewItemPopup.swift in Sources */,
 				01C6854121A10FA300D6A808 /* Protocol.swift in Sources */,
 				01C68530219F3E7E00D6A808 /* Extension.swift in Sources */,
 				01C6853C21A063F200D6A808 /* GDHeaderView.swift in Sources */,
