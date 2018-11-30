@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0180C44921AF3064000A0A84 /* GDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180C44821AF3064000A0A84 /* GDTextField.swift */; };
+		0180C44D21B075C6000A0A84 /* GDTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180C44C21B075C6000A0A84 /* GDTableView.swift */; };
+		0180C44F21B08356000A0A84 /* GDListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180C44E21B08356000A0A84 /* GDListCell.swift */; };
+		0180C45221B08657000A0A84 /* toDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180C45121B08657000A0A84 /* toDo.swift */; };
+		0180C45421B09AB7000A0A84 /* GDCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180C45321B09AB7000A0A84 /* GDCheckBox.swift */; };
 		01C68518219E813A00D6A808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C68517219E813A00D6A808 /* AppDelegate.swift */; };
 		01C6851A219E813A00D6A808 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C68519219E813A00D6A808 /* WelcomeController.swift */; };
 		01C68520219E813A00D6A808 /* GetItDone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01C6851E219E813A00D6A808 /* GetItDone.xcdatamodeld */; };
@@ -27,6 +31,10 @@
 
 /* Begin PBXFileReference section */
 		0180C44821AF3064000A0A84 /* GDTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDTextField.swift; sourceTree = "<group>"; };
+		0180C44C21B075C6000A0A84 /* GDTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDTableView.swift; sourceTree = "<group>"; };
+		0180C44E21B08356000A0A84 /* GDListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDListCell.swift; sourceTree = "<group>"; };
+		0180C45121B08657000A0A84 /* toDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toDo.swift; sourceTree = "<group>"; };
+		0180C45321B09AB7000A0A84 /* GDCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDCheckBox.swift; sourceTree = "<group>"; };
 		01C68514219E813A00D6A808 /* GetItDone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetItDone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01C68517219E813A00D6A808 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01C68519219E813A00D6A808 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
@@ -57,6 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0180C45021B08628000A0A84 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0180C45121B08657000A0A84 /* toDo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		01C6850B219E813A00D6A808 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +92,7 @@
 		01C68516219E813A00D6A808 /* GetItDone */ = {
 			isa = PBXGroup;
 			children = (
+				0180C45021B08628000A0A84 /* Models */,
 				01C68534219F9C7A00D6A808 /* Fonts */,
 				01C6852E219F3E5B00D6A808 /* Extensions */,
 				01C68531219F976B00D6A808 /* Custom */,
@@ -108,6 +125,9 @@
 				01C6853B21A063F200D6A808 /* GDHeaderView.swift */,
 				01C6854221A12C6C00D6A808 /* GDNewItemPopup.swift */,
 				0180C44821AF3064000A0A84 /* GDTextField.swift */,
+				0180C44C21B075C6000A0A84 /* GDTableView.swift */,
+				0180C44E21B08356000A0A84 /* GDListCell.swift */,
+				0180C45321B09AB7000A0A84 /* GDCheckBox.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -200,7 +220,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0180C45221B08657000A0A84 /* toDo.swift in Sources */,
+				0180C44F21B08356000A0A84 /* GDListCell.swift in Sources */,
 				01C6852D219F399C00D6A808 /* GDGradient.swift in Sources */,
+				0180C45421B09AB7000A0A84 /* GDCheckBox.swift in Sources */,
 				01C68538219FC8AA00D6A808 /* GDButton.swift in Sources */,
 				01C6851A219E813A00D6A808 /* WelcomeController.swift in Sources */,
 				01C6853F21A1022D00D6A808 /* OptionSet.swift in Sources */,
@@ -208,6 +231,7 @@
 				01C68533219F97AA00D6A808 /* GDLabel.swift in Sources */,
 				0180C44921AF3064000A0A84 /* GDTextField.swift in Sources */,
 				01C6854321A12C6C00D6A808 /* GDNewItemPopup.swift in Sources */,
+				0180C44D21B075C6000A0A84 /* GDTableView.swift in Sources */,
 				01C6854121A10FA300D6A808 /* Protocol.swift in Sources */,
 				01C68530219F3E7E00D6A808 /* Extension.swift in Sources */,
 				01C6853C21A063F200D6A808 /* GDHeaderView.swift in Sources */,
