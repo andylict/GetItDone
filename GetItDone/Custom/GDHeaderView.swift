@@ -15,6 +15,11 @@ class GDHeaderView: UIView {
     let subtitleLabel = GDLabel(size: 24)
     let addButton = GDButton(type: .squareIcon)
     var delegate: GDHeaderDelegate?
+    var itmesLeftCounter: Int = 0 {
+        didSet {
+            self.subtitleLabel.text = "\(itmesLeftCounter) Left"
+        }
+    }
     
     init(frame: CGRect = .zero, title: String = "Header Title", subtitle: String = "Header Subtitle") {
         super.init(frame: frame)
@@ -38,16 +43,16 @@ class GDHeaderView: UIView {
         addSubview(subtitleLabel)
         
         titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 12).isActive = true // constant是把label往下移动一部分
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 20 + 8).isActive = true // 20是主界面的left，8是header额外的增加量
+        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 20 + 16).isActive = true // 20是主界面的left，8是header额外的增加量
         titleLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         
         subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-        subtitleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 20 + 8).isActive = true
+        subtitleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 20 + 16).isActive = true
         subtitleLabel.rightAnchor.constraint(equalTo: centerXAnchor, constant: 50).isActive = true
         
         addSubview(addButton)
         addButton.bottomAnchor.constraint(equalTo: subtitleLabel.bottomAnchor).isActive = true
-        addButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -(20 + 8)).isActive = true
+        addButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -20 - 16 - 14).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
         addButton.widthAnchor.constraint(equalTo: addButton.heightAnchor, multiplier: 1).isActive = true
         

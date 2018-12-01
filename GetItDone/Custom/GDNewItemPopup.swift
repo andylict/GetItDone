@@ -23,9 +23,8 @@ class GDNewItemPopup: GDGradient {
     var delegate: GDNewItemPopupDelegate?
     
     @objc func handleCancel() {
-        // print("trying to handle cancel")
-        textField.resignFirstResponder()
-        // only keyboard disappear, the textField is not drop, need to implement textFieldDidEndEditing() in ListController
+        print("trying to handle cancel")
+        animatePopup()
     }
     
     @objc func handleAdd() {
@@ -35,12 +34,26 @@ class GDNewItemPopup: GDGradient {
         }
     }
     
+    var popupLocation: CGFloat = 70
+    @objc func animatePopup() {
+        // print("trying to open add item popup view")
+        textField.resignFirstResponder() // make keyboard disappear
+        self.animateView(transform: CGAffineTransform(translationX: 0, y: popupLocation), duration: 0.3)
+        if popupLocation == 70 {
+            popupLocation = 0
+        } else {
+            popupLocation = 70
+        }
+    }
+    
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         
         let inset: CGFloat = 12
         
         self.layer.cornerRadius = 16
+        self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        // self.layer.masksToBounds = true
         
         addSubview(cancel)
         cancel.leftAnchor.constraint(equalTo: leftAnchor, constant: inset).isActive = true
@@ -60,6 +73,9 @@ class GDNewItemPopup: GDGradient {
         
         cancel.addTarget(self, action: #selector(self.handleCancel), for: .touchUpInside)
         add.addTarget(self, action: #selector(self.handleAdd), for: .touchUpInside)
+        
+        // popup when click the edge
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.animatePopup)))
     }
     
     required init?(coder aDecoder: NSCoder) {

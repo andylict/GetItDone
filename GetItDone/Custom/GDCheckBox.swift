@@ -10,7 +10,7 @@ import UIKit
 
 class GDCheckBox: UIButton {
     
-    var delegete: GDListCellDelegate?
+    
     var id: Int?
     
     override init(frame: CGRect) {
@@ -21,7 +21,7 @@ class GDCheckBox: UIButton {
         layer.borderWidth = 1
         layer.borderColor = UIColor.greyZero.cgColor
         
-        addTarget(self, action: #selector(self.toggleStatus), for: .touchUpInside)
+        
     }
     
     // change the checkbox background color based on todo.status value
@@ -43,15 +43,7 @@ class GDCheckBox: UIButton {
         }
     }
     
-    // toggle box
-    @objc func toggleStatus() {
-        if let status = finished, let delegate = self.delegete, let id = self.id {
-            finished = !status
-            // send to nofify udpate the list
-            delegete?.toggleToDo(id: id, status: !status)
-        }
-    }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -12,10 +12,31 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemPopupDelegate
     
     func openAddItemPopup() {
         print("trying to open add item popup view")
+        popup.animatePopup()
     }
     
     func addItemToList(text: String) {
-        print("text in textField is: \(text)")
+        if notInList(text: text) {
+            print("text in textField is: \(text)")
+            let newItem = ToDo(id: self.listData.count, title: text, status: false)
+            self.listData.append(newItem)
+            self.listTable.reloadData()
+            self.updateHeaderCounter()
+            // clear textField
+            self.popup.textField.text = ""
+            self.popup.animatePopup()
+        }
+    }
+    
+    func notInList(text: String) -> Bool {
+        var notInList = true
+        self.listData.forEach { (toDo) in
+            if toDo.title == text {
+                notInList = false
+                return
+            }
+        }
+        return notInList
     }
     
     // pass parameter to listController
@@ -35,15 +56,17 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemPopupDelegate
     var listData: [ToDo] = [ToDo]()
     
     let tbInset: CGFloat = 16 // inset for list table
+    var bgBottom: NSLayoutConstraint! // make the bg bottom constraint global variable
     
     override func viewDidLoad() { // render view
         super.viewDidLoad()
         
         listData = [
-            ToDo(id: 0, title: "first item", status: false),
-            ToDo(id: 1, title: "Hey dude", status: true),
-            ToDo(id: 2, title: "It's lit fam", status: true)
+            // ToDo(id: 0, title: "first item", status: false),
+            // ToDo(id: 1, title: "Hey dude", status: true),
+            // ToDo(id: 2, title: "It's lit fam", status: true)
         ]
+        self.updateHeaderCounter()
         
         view.backgroundColor = .white
         
@@ -57,7 +80,8 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemPopupDelegate
         view.addSubview(bg)
         bg.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         bg.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 20).isActive = true
-        bg.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        bgBottom = bg.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
+        bgBottom.isActive = true
         bg.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
         
         view.addSubview(listTable)
@@ -71,6 +95,7 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemPopupDelegate
         popup.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         popup.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
         popup.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        openAddItemPopup()
         
         header.delegate = self
         
@@ -80,6 +105,8 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemPopupDelegate
         listTable.delegate = self
         listTable.dataSource = self
         listTable.register(GDListCell.self, forCellReuseIdentifier: CELL_ID)
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,10 +121,18 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemPopupDelegate
         // moved animate in the delegate
     }
     
-    /*
-     implement UITextField delegate
-     */
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
+    func updateHeaderCounter() {
+        header.itmesLeftCounter = 0
+        self.listData.forEach { (toDo) in
+            if !toDo.status {
+                header.itmesLeftCounter += 1
+            }
+        }
+    }
 }
 
 extension ListController: UITextFieldDelegate {
@@ -105,21 +140,43 @@ extension ListController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         // print("textfield did begin editing")
         
-        // animate the move
-        // animateView(view: self.popup, transform: CGAffineTransform(translationX: 0, y: -self.keyboardHeight))
-        // 或者把animateView写在extension里 直接从view对象调用
-        self.popup.animateView(transform: CGAffineTransform(translationX: 0, y: -self.keyboardHeight), duration: 0.5)
+        var heightToDisplayKeyboard = -keyboardHeight - 20
+        
+        // when edit the main list, do not show the popup
+        if textField == popup.textField {
+            // animateView(view: self.popup, transform: CGAffineTransform(translationX: 0, y: -self.keyboardHeight))
+            // 或者把animateView写在extension里 直接从view对象调用
+            self.popup.animateView(transform: CGAffineTransform(translationX: 0, y: -self.keyboardHeight), duration: 0.5)
+            heightToDisplayKeyboard -= 80
+        }
+        
+        self.bgBottom.constant = heightToDisplayKeyboard
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        // animateView(view: self.popup, transform: CGAffineTransform(translationX: 0, y: 0))
-        self.popup.animateView(transform: CGAffineTransform(translationX: 0, y: 0), duration: 0.6)
+        self.bgBottom.constant = -100
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+        if textField == popup.textField {
+            // animateView(view: self.popup, transform: CGAffineTransform(translationX: 0, y: 0))
+            self.popup.animateView(transform: CGAffineTransform(translationX: 0, y: 0), duration: 0.6)
+        }
     }
     
     func animateView(view: UIView, transform: CGAffineTransform) {
         UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 2, options: .curveEaseIn, animations: {
             view.transform = transform
         }, completion: nil)
+    }
+    
+    // make keyboard disappear when hit return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
@@ -141,8 +198,8 @@ extension ListController: UITableViewDelegate, UITableViewDataSource, GDListCell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! GDListCell
         
-        cell.box.delegete = self // when event happens in GDCheckbox, it will run this func
-        
+        cell.delegete = self // when event happens in GDCheckbox, it will run this func
+        cell.textField.delegate = self
         // display correct item in each section
         var itemsForSection: [ToDo] = []
         self.listData.forEach { (toDo) in
@@ -188,18 +245,20 @@ extension ListController: UITableViewDelegate, UITableViewDataSource, GDListCell
         return 38
     }
     
-    func toggleToDo(id: Int, status: Bool) {
-        print("trying to toggle todo in DB, id: \(id), \(status)")
+    func toggleToDo(toDo udpatedToDo: ToDo) {
+        print("trying to toggle todo in DB, id: \(udpatedToDo.id), \(udpatedToDo.status)")
         // toggle data
-        let newListData = self.listData.map { (toDo) -> ToDo in
-            if toDo.id == id {
-                var newToDo = toDo // get new object
-                newToDo.status = status
+        let newListData = self.listData.map { (oldToDo) -> ToDo in
+            if oldToDo.id == udpatedToDo.id {
+                var newToDo = oldToDo // get new object
+                newToDo.title = udpatedToDo.title
+                newToDo.status = udpatedToDo.status
                 return newToDo
             }
-            return toDo
+            return oldToDo
         }
         self.listData = newListData
         self.listTable.reloadData()
+        self.updateHeaderCounter()
     }
 }

@@ -60,7 +60,20 @@ class GDListCell: UITableViewCell {
         box.widthAnchor.constraint(equalToConstant: 22).isActive = true
         box.heightAnchor.constraint(equalTo: box.widthAnchor).isActive = true
         
+        box.addTarget(self, action: #selector(self.toggleStatus), for: .touchUpInside)
     }
+    
+    // toggle box
+    var delegete: GDListCellDelegate?
+    
+    @objc func toggleStatus() {
+        if let delegete = self.delegete, let toDo = self.toDo {
+            let newToDo = ToDo(id: toDo.id, title: textField.text!, status: !toDo.status)
+            delegete.toggleToDo(toDo: newToDo)
+        }
+    }
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
