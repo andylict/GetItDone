@@ -43,6 +43,9 @@ class WelcomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // introduction to UserDefault
+        UserDefaults.standard.set(true, forKey: "welcome-controller-visited")
+        
         // register button for event
         nextButton.addTarget(self, action: #selector(self.handleNext), for: [.touchUpInside, .touchUpOutside])
         

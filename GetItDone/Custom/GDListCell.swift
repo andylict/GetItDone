@@ -17,13 +17,13 @@ class GDListCell: UITableViewCell {
                 
                 self.box.finished = toDo.status
                 self.textField.text = toDo.title
-                self.box.id = toDo.id
+                // self.box.id = toDo.id
             }
         }
     }
     
     // let titleLabel = GDLabel(color: .greyZero, size: 14)
-    let textField = GDTextField(placeholder: "ToDo", radius: 0, inset: 14)
+    let textField = GDTextField(placeholder: "To Do", radius: 0, inset: 14)
     let view: UIView = {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -68,8 +68,11 @@ class GDListCell: UITableViewCell {
     
     @objc func toggleStatus() {
         if let delegete = self.delegete, let toDo = self.toDo {
-            let newToDo = ToDo(id: toDo.id, title: textField.text!, status: !toDo.status)
-            delegete.toggleToDo(toDo: newToDo)
+//            let newToDo = toDo(id: toDo.id, title: textField.text!, status: !toDo.status)
+//            delegete.toggleToDo(toDo: newToDo)
+            CoreDataManager.shared.deleteToDo(id: toDo.id)
+            CoreDataManager.shared.createToDo(id: toDo.id, title: textField.text!, status: !toDo.status)
+            delegete.toggleToDo()
         }
     }
     

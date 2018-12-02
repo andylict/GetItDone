@@ -18,8 +18,10 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemPopupDelegate
     func addItemToList(text: String) {
         if notInList(text: text) {
             print("text in textField is: \(text)")
-            let newItem = ToDo(id: self.listData.count, title: text, status: false)
-            self.listData.append(newItem)
+            // let newItem = ToDo(id: self.listData.count, title: text, status: false)
+            // self.listData.append(newItem)
+            CoreDataManager.shared.createToDo(id: Double(self.listData.count), title: text, status: false)
+            self.listData = CoreDataManager.shared.fetchToDos()
             self.listTable.reloadData()
             self.updateHeaderCounter()
             // clear textField
@@ -58,14 +60,20 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemPopupDelegate
     let tbInset: CGFloat = 16 // inset for list table
     var bgBottom: NSLayoutConstraint! // make the bg bottom constraint global variable
     
+    var toDoToUpdate: ToDo? // textField 正在editing的toDo
+    
     override func viewDidLoad() { // render view
         super.viewDidLoad()
         
+        /*
         listData = [
-            // ToDo(id: 0, title: "first item", status: false),
-            // ToDo(id: 1, title: "Hey dude", status: true),
-            // ToDo(id: 2, title: "It's lit fam", status: true)
+            ToDo(id: 0, title: "first item", status: false),
+            ToDo(id: 1, title: "Hey dude", status: true),
+            ToDo(id: 2, title: "It's lit fam", status: true)
         ]
+        */
+        listData = CoreDataManager.shared.fetchToDos()
+        
         self.updateHeaderCounter()
         
         view.backgroundColor = .white
@@ -105,8 +113,6 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemPopupDelegate
         listTable.delegate = self
         listTable.dataSource = self
         listTable.register(GDListCell.self, forCellReuseIdentifier: CELL_ID)
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -136,7 +142,7 @@ class ListController: UIViewController, GDHeaderDelegate, GDNewItemPopupDelegate
 }
 
 extension ListController: UITextFieldDelegate {
-    // when editing the textfield, will run this method
+    // when click the textfield, will run this method
     func textFieldDidBeginEditing(_ textField: UITextField) {
         // print("textfield did begin editing")
         
@@ -148,6 +154,8 @@ extension ListController: UITextFieldDelegate {
             // 或者把animateView写在extension里 直接从view对象调用
             self.popup.animateView(transform: CGAffineTransform(translationX: 0, y: -self.keyboardHeight), duration: 0.5)
             heightToDisplayKeyboard -= 80
+        } else {
+            self.toDoToUpdate = CoreDataManager.shared.fetchToDo(title: textField.text!)
         }
         
         self.bgBottom.constant = heightToDisplayKeyboard
@@ -164,6 +172,11 @@ extension ListController: UITextFieldDelegate {
         if textField == popup.textField {
             // animateView(view: self.popup, transform: CGAffineTransform(translationX: 0, y: 0))
             self.popup.animateView(transform: CGAffineTransform(translationX: 0, y: 0), duration: 0.6)
+        } else {
+            if let toDoToUpdate = self.toDoToUpdate {
+                CoreDataManager.shared.deleteToDo(id: toDoToUpdate.id)
+                CoreDataManager.shared.createToDo(id: toDoToUpdate.id, title: textField.text!, status: toDoToUpdate.status)
+            }
         }
     }
     
@@ -245,19 +258,20 @@ extension ListController: UITableViewDelegate, UITableViewDataSource, GDListCell
         return 38
     }
     
-    func toggleToDo(toDo udpatedToDo: ToDo) {
-        print("trying to toggle todo in DB, id: \(udpatedToDo.id), \(udpatedToDo.status)")
+    func toggleToDo() {
+        // print("trying to toggle todo in DB, id: \(udpatedToDo.id), \(udpatedToDo.status)")
         // toggle data
-        let newListData = self.listData.map { (oldToDo) -> ToDo in
-            if oldToDo.id == udpatedToDo.id {
-                var newToDo = oldToDo // get new object
-                newToDo.title = udpatedToDo.title
-                newToDo.status = udpatedToDo.status
-                return newToDo
-            }
-            return oldToDo
-        }
-        self.listData = newListData
+//        let newListData = self.listData.map { (oldToDo) -> ToDo in
+//            if oldToDo.id == udpatedToDo.id {
+//                var newToDo = oldToDo // get new object
+//                newToDo.title = udpatedToDo.title
+//                newToDo.status = udpatedToDo.status
+//                return newToDo
+//            }
+//            return oldToDo
+//        }
+//        self.listData = newListData
+        self.listData = CoreDataManager.shared.fetchToDos()
         self.listTable.reloadData()
         self.updateHeaderCounter()
     }
